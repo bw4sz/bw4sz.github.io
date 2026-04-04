@@ -1,5 +1,9 @@
 # Publication Figures for Ben Weinstein's Website
 
+**DeepMeerkat 3.0 (site page):** `deepmeerkat-main-ui.png` and `deepmeerkat-review.png` are used on `deepmeerkat.html`.
+
+---
+
 This directory should contain the main conceptual figures from Ben's key publications. 
 
 ## Required Figures:
