@@ -147,6 +147,27 @@
         }
         ul.bullets { margin: 0.75rem 0 0 1.25rem; }
         ul.bullets li { margin: 0.35rem 0; }
+        ol.steps { margin: 0.75rem 0 0 1.25rem; padding-left: 1.25rem; }
+        ol.steps li { margin: 0.4rem 0; }
+        pre.term {
+            background: #1e1e1e;
+            color: #e8e8e8;
+            padding: 1rem 1.25rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin: 1rem 0;
+        }
+        pre.term code { font-family: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace; }
+        .callout {
+            background: #fff8e6;
+            border-left: 4px solid #f39c12;
+            padding: 1rem 1.25rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.98rem;
+        }
     </style>
 </head>
 <body>
@@ -165,6 +186,7 @@
                 <li><a href="#overview">Overview</a></li>
                 <li><a href="#how-it-works">How it works</a></li>
                 <li><a href="#download">Download</a></li>
+                <li><a href="#macos-terminal">macOS: Terminal</a></li>
                 <li><a href="#screenshots">Screenshots</a></li>
             </ul>
         </div>
@@ -243,10 +265,10 @@
             <section id="download">
                 <h2>Download</h2>
                 <p class="lead">
-                    Installers for <strong>macOS</strong>, <strong>Windows</strong>, and <strong>Linux</strong> are published with
-                    <a href="https://github.com/bw4sz/DeepMeerkat/releases/latest" target="_blank" rel="noopener">GitHub Releases</a>.
-                    Open the latest release and download the asset that matches your platform (for example <code>.dmg</code>,
-                    <code>.exe</code>, or AppImage/archive for Linux).
+                    <a href="https://github.com/bw4sz/DeepMeerkat/releases/latest" target="_blank" rel="noopener">GitHub Releases</a>
+                    include a <strong>Windows</strong> <code>.exe</code> and a <strong>macOS</strong> file named like
+                    <code>DeepMeerkat-v3.0.0-macOS</code> (not a <code>.dmg</code>). There is <strong>no Linux binary</strong> on GitHub
+                    (bundle size); on Linux use <code>pip install &quot;deepmeerkat[ui]&quot;</code> and <code>deepmeerkat-gui</code>.
                 </p>
                 <div class="downloads">
                     <a href="https://github.com/bw4sz/DeepMeerkat/releases/latest" target="_blank" rel="noopener">
@@ -257,14 +279,41 @@
                         Windows
                         <small>Latest release · Assets</small>
                     </a>
-                    <a href="https://github.com/bw4sz/DeepMeerkat/releases/latest" target="_blank" rel="noopener">
-                        Linux
-                        <small>Latest release · Assets</small>
+                    <a href="https://deepmeerkat.readthedocs.io/" target="_blank" rel="noopener">
+                        Linux (pip)
+                        <small>Documentation</small>
                     </a>
                 </div>
                 <p class="note">
-                    Prefer pip? <code>pip install deepmeerkat</code> — see the
-                    <a href="https://deepmeerkat.readthedocs.io/" target="_blank" rel="noopener">docs</a> for GUI extras (<code>[ui]</code>).
+                    PyPI: <code>pip install &quot;deepmeerkat[ui]&quot;</code> for the GUI (any OS). See
+                    <a href="https://deepmeerkat.readthedocs.io/" target="_blank" rel="noopener">documentation</a>.
+                </p>
+            </section>
+
+            <section id="macos-terminal">
+                <h2>macOS: run the release file from Terminal</h2>
+                <p>
+                    The macOS download is a <strong>single executable</strong>, not an app bundle. Double-clicking often does nothing;
+                    run it from <strong>Terminal</strong>. The build is <strong>not</strong> signed for Gatekeeper, so you may need to allow it once (see below).
+                </p>
+                <ol class="steps">
+                    <li>Open <strong>Terminal</strong>.</li>
+                    <li>Go to the folder where the file is saved (often <code>~/Downloads</code>).</li>
+                    <li>Make it executable once: <code>chmod +x DeepMeerkat-v3.0.0-macOS</code> — use the <strong>exact filename</strong> from the release if the version differs.</li>
+                    <li>Start the GUI: <code>./DeepMeerkat-v3.0.0-macOS</code></li>
+                </ol>
+                <p>Example (adjust the filename to match your download):</p>
+                <pre class="term" tabindex="0"><code>cd ~/Downloads
+chmod +x DeepMeerkat-v3.0.0-macOS
+./DeepMeerkat-v3.0.0-macOS</code></pre>
+                <div class="callout">
+                    If macOS says the app can’t be opened because it’s from an <strong>unidentified developer</strong>:
+                    open <strong>System Settings → Privacy &amp; Security</strong>, find the message about the file, and click
+                    <strong>Open Anyway</strong>. Or in <strong>Finder</strong>, <strong>Control-click</strong> the file →
+                    <strong>Open</strong> → confirm.
+                </div>
+                <p class="note">
+                    Easier path: <code>pip install &quot;deepmeerkat[ui]&quot;</code> then <code>deepmeerkat-gui</code> (same application).
                 </p>
             </section>
 
