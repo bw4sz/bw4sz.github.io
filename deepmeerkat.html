@@ -186,6 +186,7 @@
                 <li><a href="#overview">Overview</a></li>
                 <li><a href="#how-it-works">How it works</a></li>
                 <li><a href="#download">Download</a></li>
+                <li><a href="#pip-install">pip from GitHub</a></li>
                 <li><a href="#macos-terminal">macOS: Terminal</a></li>
                 <li><a href="#screenshots">Screenshots</a></li>
             </ul>
@@ -268,7 +269,7 @@
                     <a href="https://github.com/bw4sz/DeepMeerkat/releases/latest" target="_blank" rel="noopener">GitHub Releases</a>
                     include a <strong>Windows</strong> <code>.exe</code> and a <strong>macOS</strong> file named like
                     <code>DeepMeerkat-v3.0.0-macOS</code> (not a <code>.dmg</code>). There is <strong>no Linux binary</strong> on GitHub
-                    (bundle size); on Linux use <code>pip install &quot;deepmeerkat[ui]&quot;</code> and <code>deepmeerkat-gui</code>.
+                    (bundle size); on Linux install with <strong>pip from GitHub</strong> (see below).
                 </p>
                 <div class="downloads">
                     <a href="https://github.com/bw4sz/DeepMeerkat/releases/latest" target="_blank" rel="noopener">
@@ -284,9 +285,22 @@
                         <small>Documentation</small>
                     </a>
                 </div>
+            </section>
+
+            <section id="pip-install">
+                <h2>Install with pip from GitHub (no PyPI needed)</h2>
+                <p>
+                    If the project is not on PyPI yet, you can still install with <strong>pip</strong> from this repository.
+                    You need <strong>Git</strong> installed and on your <code>PATH</code>.
+                </p>
+                <p>Latest <code>main</code> branch with the GUI:</p>
+                <pre class="term" tabindex="0"><code>pip install "deepmeerkat[ui] @ git+https://github.com/bw4sz/DeepMeerkat.git"</code></pre>
+                <p>Pin to a release tag (example <code>v3.0.0</code>):</p>
+                <pre class="term" tabindex="0"><code>pip install "deepmeerkat[ui] @ git+https://github.com/bw4sz/DeepMeerkat.git@v3.0.0"</code></pre>
+                <p>Then run <code>deepmeerkat-gui</code> or the CLI <code>deepmeerkat run …</code>. When the package is published to PyPI, <code>pip install &quot;deepmeerkat[ui]&quot;</code> works too.</p>
                 <p class="note">
-                    PyPI: <code>pip install &quot;deepmeerkat[ui]&quot;</code> for the GUI (any OS). See
-                    <a href="https://deepmeerkat.readthedocs.io/" target="_blank" rel="noopener">documentation</a>.
+                    More detail: <a href="https://deepmeerkat.readthedocs.io/" target="_blank" rel="noopener">documentation</a>
+                    · <a href="https://github.com/bw4sz/DeepMeerkat" target="_blank" rel="noopener">repository</a>
                 </p>
             </section>
 
@@ -313,7 +327,7 @@ chmod +x DeepMeerkat-v3.0.0-macOS
                     <strong>Open</strong> → confirm.
                 </div>
                 <p class="note">
-                    Easier path: <code>pip install &quot;deepmeerkat[ui]&quot;</code> then <code>deepmeerkat-gui</code> (same application).
+                    Easier path: install from GitHub with pip (see <a href="#pip-install">pip from GitHub</a>), then <code>deepmeerkat-gui</code> (same application).
                 </p>
             </section>
 
