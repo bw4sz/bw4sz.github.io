@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepMeerkat 3.0 — Ecological video review</title>
+    <meta name="description" content="DeepMeerkat 3.0: desktop and CLI tools for camera-trap and ecological video using MegaDetector and classic motion detection.">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #27ae60;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --border-color: #e9ecef;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.65;
+            color: var(--text-color);
+            background: #fff;
+        }
+        .container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2.5rem 0;
+            text-align: center;
+        }
+        header h1 { font-size: 2rem; font-weight: 400; margin-bottom: 0.5rem; }
+        header p { opacity: 0.95; font-size: 1.05rem; }
+        header a {
+            color: white;
+            margin-top: 1rem;
+            display: inline-block;
+            text-decoration: none;
+            padding: 8px 18px;
+            border: 1px solid rgba(255,255,255,0.4);
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+        header a:hover { background: rgba(255,255,255,0.12); }
+        nav {
+            background: var(--light-bg);
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.5rem;
+        }
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            padding: 6px 0;
+            border-bottom: 2px solid transparent;
+        }
+        nav a:hover { color: var(--secondary-color); border-color: var(--secondary-color); }
+        main { padding: 2.5rem 0 4rem; }
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.65rem;
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--accent-color);
+        }
+        .lead { font-size: 1.15rem; color: #444; margin-bottom: 1.5rem; }
+        .diagram-wrap {
+            background: var(--light-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+        .diagram-wrap svg { display: block; margin: 0 auto; max-width: 100%; height: auto; }
+        .downloads {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .downloads a {
+            display: block;
+            text-align: center;
+            padding: 1rem 1.25rem;
+            background: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        .downloads a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(52, 152, 219, 0.35);
+        }
+        .downloads a small {
+            display: block;
+            font-weight: 400;
+            font-size: 0.85rem;
+            margin-top: 0.35rem;
+            opacity: 0.92;
+        }
+        .note {
+            font-size: 0.95rem;
+            color: #555;
+            margin-top: 0.75rem;
+        }
+        .links-row {
+            margin: 1.25rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .links-row a {
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+        figure {
+            margin: 2rem 0;
+            background: var(--light-bg);
+            padding: 1rem;
+            border-radius: 10px;
+        }
+        figure img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        figcaption {
+            margin-top: 0.75rem;
+            font-size: 0.95rem;
+            color: #555;
+        }
+        footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 1.5rem 0;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+        ul.bullets { margin: 0.75rem 0 0 1.25rem; }
+        ul.bullets li { margin: 0.35rem 0; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>DeepMeerkat 3.0</h1>
+            <p>Ecological video review with MegaDetector — desktop GUI, CLI, and CSV/JSON exports.</p>
+            <a href="index.html">← Back to home</a>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#how-it-works">How it works</a></li>
+                <li><a href="#download">Download</a></li>
+                <li><a href="#screenshots">Screenshots</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <section id="overview">
+                <h2>Overview</h2>
+                <p class="lead">
+                    <strong>DeepMeerkat</strong> helps you process camera-trap and field video for wildlife monitoring.
+                    The default pipeline uses <strong>MegaDetector</strong> (animals, people, vehicles) with a modern
+                    PySide6 desktop app and a command-line interface. A classic OpenCV motion mode is available for
+                    legacy workflows.
+                </p>
+                <div class="links-row">
+                    <a href="https://github.com/bw4sz/DeepMeerkat" target="_blank" rel="noopener">GitHub repository</a>
+                    <a href="https://deepmeerkat.readthedocs.io/" target="_blank" rel="noopener">Documentation</a>
+                    <a href="https://pypi.org/project/deepmeerkat/" target="_blank" rel="noopener">PyPI package</a>
+                </div>
+            </section>
+
+            <section id="how-it-works">
+                <h2>How it works (MegaDetector mode)</h2>
+                <p>
+                    Video frames are sampled (with optional stride or FPS cap), resized for inference if needed, and
+                    passed through the MegaDetector model (e.g. MDV5A). Detections become bounding boxes and labels,
+                    written to <code>annotations.csv</code> and optional JSON. You can then open the built-in
+                    <strong>Review</strong> window to scrub the video, filter by score, and jump between detections.
+                </p>
+                <div class="diagram-wrap" aria-label="DeepMeerkat MegaDetector pipeline diagram">
+                    <svg viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg" role="img">
+                        <title>From video to review: MegaDetector pipeline</title>
+                        <defs>
+                            <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+                                <path d="M0,0 L10,4 L0,8 z" fill="#3498db"/>
+                            </marker>
+                        </defs>
+                        <rect x="10" y="50" width="120" height="70" rx="8" fill="#ecf0f1" stroke="#2c3e50" stroke-width="2"/>
+                        <text x="70" y="82" text-anchor="middle" font-size="13" font-family="Segoe UI,sans-serif" fill="#2c3e50">Video file</text>
+                        <text x="70" y="100" text-anchor="middle" font-size="11" font-family="Segoe UI,sans-serif" fill="#555">MP4 / folder</text>
+                        <line x1="130" y1="85" x2="168" y2="85" stroke="#3498db" stroke-width="2" marker-end="url(#arrow)"/>
+
+                        <rect x="170" y="40" width="130" height="90" rx="8" fill="#e8f4fc" stroke="#3498db" stroke-width="2"/>
+                        <text x="235" y="68" text-anchor="middle" font-size="13" font-family="Segoe UI,sans-serif" fill="#2c3e50">Frame sampling</text>
+                        <text x="235" y="88" text-anchor="middle" font-size="11" font-family="Segoe UI,sans-serif" fill="#555">stride · FPS cap</text>
+                        <text x="235" y="108" text-anchor="middle" font-size="11" font-family="Segoe UI,sans-serif" fill="#555">resize (max dim)</text>
+
+                        <line x1="300" y1="85" x2="338" y2="85" stroke="#3498db" stroke-width="2" marker-end="url(#arrow)"/>
+
+                        <rect x="340" y="35" width="150" height="100" rx="8" fill="#d5f4e6" stroke="#27ae60" stroke-width="2"/>
+                        <text x="415" y="68" text-anchor="middle" font-size="13" font-weight="bold" font-family="Segoe UI,sans-serif" fill="#1e8449">MegaDetector</text>
+                        <text x="415" y="88" text-anchor="middle" font-size="11" font-family="Segoe UI,sans-serif" fill="#555">MDV5A · GPU/CPU</text>
+                        <text x="415" y="108" text-anchor="middle" font-size="11" font-family="Segoe UI,sans-serif" fill="#555">animal · person · vehicle</text>
+
+                        <line x1="490" y1="85" x2="528" y2="85" stroke="#3498db" stroke-width="2" marker-end="url(#arrow)"/>
+
+                        <rect x="530" y="45" width="135" height="80" rx="8" fill="#ecf0f1" stroke="#2c3e50" stroke-width="2"/>
+                        <text x="597" y="78" text-anchor="middle" font-size="13" font-family="Segoe UI,sans-serif" fill="#2c3e50">Outputs</text>
+                        <text x="597" y="98" text-anchor="middle" font-size="10" font-family="Segoe UI,sans-serif" fill="#555">annotations.csv</text>
+                        <text x="597" y="112" text-anchor="middle" font-size="10" font-family="Segoe UI,sans-serif" fill="#555">JSON · optional JPEGs</text>
+
+                        <line x1="665" y1="85" x2="703" y2="85" stroke="#3498db" stroke-width="2" marker-end="url(#arrow)"/>
+
+                        <rect x="705" y="45" width="105" height="80" rx="8" fill="#fdebd0" stroke="#e67e22" stroke-width="2"/>
+                        <text x="757" y="82" text-anchor="middle" font-size="13" font-family="Segoe UI,sans-serif" fill="#2c3e50">Review UI</text>
+                        <text x="757" y="100" text-anchor="middle" font-size="10" font-family="Segoe UI,sans-serif" fill="#555">scrub · filter</text>
+                    </svg>
+                </div>
+                <ul class="bullets">
+                    <li>Optional <strong>region of interest (ROI)</strong> restricts where boxes are evaluated.</li>
+                    <li><strong>Classic motion</strong> mode (OpenCV) is available when you do not need MegaDetector.</li>
+                </ul>
+            </section>
+
+            <section id="download">
+                <h2>Download</h2>
+                <p class="lead">
+                    Installers for <strong>macOS</strong>, <strong>Windows</strong>, and <strong>Linux</strong> are published with
+                    <a href="https://github.com/bw4sz/DeepMeerkat/releases/latest" target="_blank" rel="noopener">GitHub Releases</a>.
+                    Open the latest release and download the asset that matches your platform (for example <code>.dmg</code>,
+                    <code>.exe</code>, or AppImage/archive for Linux).
+                </p>
+                <div class="downloads">
+                    <a href="https://github.com/bw4sz/DeepMeerkat/releases/latest" target="_blank" rel="noopener">
+                        macOS
+                        <small>Latest release · Assets</small>
+                    </a>
+                    <a href="https://github.com/bw4sz/DeepMeerkat/releases/latest" target="_blank" rel="noopener">
+                        Windows
+                        <small>Latest release · Assets</small>
+                    </a>
+                    <a href="https://github.com/bw4sz/DeepMeerkat/releases/latest" target="_blank" rel="noopener">
+                        Linux
+                        <small>Latest release · Assets</small>
+                    </a>
+                </div>
+                <p class="note">
+                    Prefer pip? <code>pip install deepmeerkat</code> — see the
+                    <a href="https://deepmeerkat.readthedocs.io/" target="_blank" rel="noopener">docs</a> for GUI extras (<code>[ui]</code>).
+                </p>
+            </section>
+
+            <section id="screenshots">
+                <h2>Screenshots</h2>
+                <figure>
+                    <img src="www/images/deepmeerkat-main-ui.png" alt="DeepMeerkat 3.0 main window with input, MegaDetector options, and Run" width="960" height="540" loading="lazy">
+                    <figcaption>Main window: choose input video or folder, tune MegaDetector options, and run.</figcaption>
+                </figure>
+                <figure>
+                    <img src="www/images/deepmeerkat-review.png" alt="Review detections window with video, timeline, and detection table" width="960" height="540" loading="lazy">
+                    <figcaption>Review detections: scrub the timeline, filter by label and minimum score, and jump between hits.</figcaption>
+                </figure>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>DeepMeerkat · <a href="https://github.com/bw4sz/DeepMeerkat" style="color:#aed6f1;" target="_blank" rel="noopener">Source</a></p>
+        </div>
+    </footer>
+</body>
+</html>
