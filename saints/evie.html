@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Evie — Saints U14G Fall 2026</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#f6f8f7; --surface:#ffffff; --fg:#14201b; --muted:#5d6b64; --line:#dbe3df; --accent:#0f6b4f; --accent-fg:#ffffff;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif; --body:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --goal-bg:#ffe1d6; --goal-fg:#a82b00; --teach-bg:#fff0d0; --teach-fg:#7d4600; --chance-bg:#dcf4e1; --chance-fg:#17692f;
+  --defend-bg:#e0ebff; --defend-fg:#1f4fb5; --calm-bg:#d6f2ef; --calm-fg:#0b6560; --takeon-bg:#eee2fb; --takeon-fg:#6a2fb0;
+  --combine-bg:#fde3ec; --combine-fg:#a3224d;
+}
+@media (prefers-color-scheme: dark){:root{
+  --bg:#0f1714; --surface:#16211d; --fg:#e6eee9; --muted:#9bada5; --line:#27362f; --accent:#4fd1a1; --accent-fg:#06231a;
+  --goal-bg:#40190d; --goal-fg:#ff9a73; --teach-bg:#3a2c10; --teach-fg:#f5b04d; --chance-bg:#14301c; --chance-fg:#6fd48a;
+  --defend-bg:#15264a; --defend-fg:#7fa8ff; --calm-bg:#0f302d; --calm-fg:#5fd3cb; --takeon-bg:#2a1b40; --takeon-fg:#c39bf5;
+  --combine-bg:#40172a; --combine-fg:#f58bb0; color-scheme:dark}}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.45 var(--body);padding-block:28px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));margin:0}
+.wrap{max-width:760px;margin:0 auto}
+.eyebrow{font:600 13px/1 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+h1{font:700 clamp(48px,12vw,84px)/.95 var(--display);margin:0;letter-spacing:.01em;text-transform:uppercase;text-wrap:balance}
+.sub{color:var(--muted);margin:10px 0 0}
+.sub b{color:var(--fg);font-weight:600}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px}
+.f{font:500 14px/1 var(--body);border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:8px 12px;border-radius:999px;cursor:pointer}
+.f small{opacity:.7;margin-left:5px}
+.f:focus-visible,.watch:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.f.on{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.f[data-t]{background:var(--tb);color:var(--tf);border-color:var(--tf)}
+.f[data-t].on{background:var(--tf);color:var(--bg)}
+.game{margin-top:28px}
+.game h2{font:700 28px/1 var(--display);text-transform:uppercase;letter-spacing:.02em;margin:0 0 4px;display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}
+.game h2 span{font:500 14px/1 var(--body);color:var(--muted);text-transform:none;letter-spacing:0}
+ul{list-style:none;margin:10px 0 0;padding:0;border-top:1px solid var(--line)}
+li{display:grid;grid-template-columns:1fr auto;gap:6px 14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.note{min-width:0}
+.txt{margin:0;overflow-wrap:anywhere}
+.meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;align-items:center}
+.clock{font:500 12px/1 var(--body);color:var(--muted);font-variant-numeric:tabular-nums;margin-right:2px}
+.tag{font:600 12px/1 var(--body);padding:4px 8px;border-radius:999px;background:var(--tb);color:var(--tf);white-space:nowrap}
+.watch{font:600 15px/1 var(--body);text-decoration:none;background:var(--accent);color:var(--accent-fg);padding:11px 16px;border-radius:8px;white-space:nowrap;display:inline-block}
+.watch:hover{filter:brightness(1.08)}
+.empty{color:var(--muted);padding:20px 0}
+.t-goal{--tb:var(--goal-bg);--tf:var(--goal-fg)}.t-teach{--tb:var(--teach-bg);--tf:var(--teach-fg)}.t-chance{--tb:var(--chance-bg);--tf:var(--chance-fg)}
+.t-defend{--tb:var(--defend-bg);--tf:var(--defend-fg)}.t-calm{--tb:var(--calm-bg);--tf:var(--calm-fg)}.t-takeon{--tb:var(--takeon-bg);--tf:var(--takeon-fg)}.t-combine{--tb:var(--combine-bg);--tf:var(--combine-fg)}
+.foot{margin-top:40px;color:var(--muted);font-size:14px}
+@media (max-width:460px){li{grid-template-columns:1fr}.watch{justify-self:start}}
+@media (prefers-reduced-motion:no-preference){.f,.watch{transition:background .15s,filter .15s}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">Saints U14 Girls · Fall 2026</p>
+  <h1>Evie</h1>
+  <p class="sub" id="sub"></p>
+  <div class="filters" id="filters" role="group" aria-label="Filter clips by tag"></div>
+  <div id="games"></div>
+  <p class="foot">Each clip opens in Dropbox in a new tab. The note under each clip is Coach Ben's.</p>
+</div>
+
+<script>
+const D={"tags": [["goal", "Goal scored"], ["teach", "Teach"], ["chance", "Goals & chances"], ["defend", "Defend"], ["calm", "Calm on ball"], ["takeon", "Take on"], ["combine", "Pass & combine"]], "games": [{"date": "2026-09-13", "opp": "Oregon Surf", "clips": [{"cid": "C_14", "t": "12:33-12:58", "label": "Evie breakaway", "tags": ["chance"], "href": "2026-09-13_vs-oregon-surf/players/evie/01_C_14_evie-breakaway.mp4"}, {"cid": "C_21", "t": "21:37-21:55", "label": "Morgan great ball over top to Evie, leads into offside", "tags": [], "href": "2026-09-13_vs-oregon-surf/players/evie/02_C_21_morgan-great-ball-over-top-to-evie-leads-into-offside.mp4"}, {"cid": "C_22", "t": "21:43-21:53", "label": "SCREENSHOT: Evie offside a yard inside other half as ball leaves Morgan's foot", "tags": [], "href": "2026-09-13_vs-oregon-surf/players/evie/03_C_22_screenshot-evie-offside-a-yard-inside-other-half-as-ball-lea.mp4"}, {"cid": "C_32", "t": "32:43-33:03", "label": "Evie comes back to ball instead of staying forward, gets in player's way", "tags": ["teach"], "href": "2026-09-13_vs-oregon-surf/players/evie/04_C_32_evie-comes-back-to-ball-instead-of-staying-forward-gets-in-p.mp4"}, {"cid": "C_43", "t": "58:50-59:10", "label": "Evie nice dribble run, taking players on", "tags": ["takeon"], "href": "2026-09-13_vs-oregon-surf/players/evie/05_C_43_evie-nice-dribble-run-taking-players-on.mp4"}, {"cid": "C_50", "t": "70:59-71:19", "label": "Morgan drives forward beating players, forward pass to Evie", "tags": ["takeon", "combine"], "href": "2026-09-13_vs-oregon-surf/players/evie/06_C_50_morgan-drives-forward-beating-players-forward-pass-to-evie.mp4"}]}, {"date": "2026-09-19", "opp": "Columbia Premier", "clips": [{"cid": "C_01", "t": "0:03-0:23", "label": "Fast start, good pass into attack", "tags": ["combine"], "href": "2026-09-19_vs-columbia-premier/players/evie/01_C_01_fast-start-good-pass-into-attack.mp4"}, {"cid": "C_05", "t": "2:09-2:29", "label": "Morgan ball in behind to Evie", "tags": ["combine"], "href": "2026-09-19_vs-columbia-premier/players/evie/02_C_05_morgan-ball-in-behind-to-evie.mp4"}, {"cid": "C_11", "t": "6:49-7:09", "label": "Nice pass Morgan to Evie", "tags": ["combine"], "href": "2026-09-19_vs-columbia-premier/players/evie/03_C_11_nice-pass-morgan-to-evie.mp4"}, {"cid": "C_15", "t": "10:23-10:43", "label": "Great work ethic", "tags": [], "href": "2026-09-19_vs-columbia-premier/players/evie/04_C_15_great-work-ethic.mp4"}, {"cid": "C_23", "t": "18:07-18:27", "label": "Collects punt, plays into center", "tags": ["combine"], "href": "2026-09-19_vs-columbia-premier/players/evie/05_C_23_collects-punt-plays-into-center.mp4"}, {"cid": "C_36", "t": "29:32-29:52", "label": "Teaching: dribbles out of bounds, should come back inside and pass to Gia", "tags": ["teach", "takeon", "combine"], "href": "2026-09-19_vs-columbia-premier/players/evie/06_C_36_teaching-dribbles-out-of-bounds-should-come-back-inside-and.mp4"}, {"cid": "C_40", "t": "44:36-44:56", "label": "Teaching: plays to corner again, needs to come back inside", "tags": ["teach"], "href": "2026-09-19_vs-columbia-premier/players/evie/07_C_40_teaching-plays-to-corner-again-needs-to-come-back-inside.mp4"}, {"cid": "C_47", "t": "54:02-54:47", "label": "Morgan gets out of a jam, leads to Evie breakaway; teaching: had pass to Laney or far-post shot option, shot near post instead", "tags": ["teach", "chance", "combine"], "href": "2026-09-19_vs-columbia-premier/players/evie/08_C_47_morgan-gets-out-of-a-jam-leads-to-evie-breakaway-teaching-ha.mp4"}, {"cid": "C_50", "t": "66:27-66:47", "label": "Great defensive effort, wins a foul", "tags": ["defend"], "href": "2026-09-19_vs-columbia-premier/players/evie/06_C_50_morgan-drives-forward-beating-players-forward-pass-to-evie.mp4"}, {"cid": "C_56", "t": "73:04-73:24", "label": "Teaching: goes out of bounds again", "tags": ["teach"], "href": "2026-09-19_vs-columbia-premier/players/evie/09_C_56_teaching-goes-out-of-bounds-again.mp4"}]}, {"date": "2026-09-26", "opp": "Lincoln Fc", "clips": [{"cid": "C_01", "t": "12:10", "label": "Wins ball, drives to wing, no connection", "tags": ["defend", "takeon"], "href": "2026-09-26_vs-lincoln-fc/players/evie/01_C_01_wins-ball-drives-to-wing-no-connection.mp4"}, {"cid": "C_02", "t": "12:45", "label": "Plays against the diamond again, not looking central", "tags": ["combine"], "href": "2026-09-26_vs-lincoln-fc/players/evie/02_C_02_plays-against-the-diamond-again-not-looking-central.mp4"}, {"cid": "C_03", "t": "13:11", "label": "Drives forward, can't find a teammate again", "tags": ["takeon", "combine"], "href": "2026-09-26_vs-lincoln-fc/players/evie/03_C_03_drives-forward-can-t-find-a-teammate-again.mp4"}, {"cid": "C_05", "t": "18:11", "label": "Great ball over the top from Morgan to Evie", "tags": [], "href": "2026-09-26_vs-lincoln-fc/players/evie/04_C_05_great-ball-over-the-top-from-morgan-to-evie.mp4"}, {"cid": "C_11", "t": "22:20", "label": "Refuses to pass, surrounded by 5 defenders", "tags": ["combine"], "href": "2026-09-26_vs-lincoln-fc/players/evie/05_C_11_refuses-to-pass-surrounded-by-5-defenders.mp4"}, {"cid": "C_26", "t": "31:32", "label": "Called offside but Evie is actually on — nice over-the-top ball from Issa", "tags": [], "href": "2026-09-26_vs-lincoln-fc/players/evie/06_C_26_called-offside-but-evie-is-actually-on-nice-over-the-top-bal.mp4"}, {"cid": "C_39", "t": "43:20", "label": "TEACHING — good breakaway, needs a heavier first touch to take it away from the defender", "tags": ["teach", "chance", "calm"], "href": "2026-09-26_vs-lincoln-fc/players/evie/07_C_39_teaching-good-breakaway-needs-a-heavier-first-touch-to-take.mp4"}, {"cid": "C_45", "t": "46:17", "label": "TEACHING — goes back into traffic, should lay it off to Gia for a shot", "tags": ["teach", "chance", "combine"], "href": "2026-09-26_vs-lincoln-fc/players/evie/08_C_45_teaching-goes-back-into-traffic-should-lay-it-off-to-gia-for.mp4"}, {"cid": "C_70", "t": "76:37", "label": "TEACHING — just needs to pass it", "tags": ["teach", "combine"], "href": "2026-09-26_vs-lincoln-fc/players/evie/09_C_70_teaching-just-needs-to-pass-it.mp4"}, {"cid": "C_74", "t": "79:42", "label": "TEACHING — just needs to lay it off to Lainey", "tags": ["teach", "combine"], "href": "2026-09-26_vs-lincoln-fc/players/evie/10_C_74_teaching-just-needs-to-lay-it-off-to-lainey.mp4"}]}, {"date": "2026-10-03", "opp": "Pcu", "clips": [{"cid": "C_03", "t": "16:06", "label": "Good physicality, driving into players", "tags": ["defend"], "href": "2026-10-03_vs-pcu/players/evie/01_C_03_good-physicality-driving-into-players.mp4"}, {"cid": "C_38", "t": "50:38", "label": "TEACH Trap first instead of letting ball run past, then attack", "tags": ["teach", "calm"], "href": "2026-10-03_vs-pcu/players/evie/02_C_38_teach-trap-first-instead-of-letting-ball-run-past-then-attac.mp4"}, {"cid": "C_44", "t": "1:07:27", "label": "Evie at left back, brilliant win, drives forward", "tags": ["defend", "takeon"], "href": "2026-10-03_vs-pcu/players/evie/03_C_44_evie-at-left-back-brilliant-win-drives-forward.mp4"}, {"cid": "C_45", "t": "1:07:43", "label": "TEACH Covered ground; pick head up and find Morgan", "tags": ["teach", "defend", "combine"], "href": "2026-10-03_vs-pcu/players/evie/04_C_45_teach-covered-ground-pick-head-up-and-find-morgan.mp4"}, {"cid": "C_47", "t": "1:10:22", "label": "Evie wins, into Lillian; Lillian reverses to Morgan to Mo", "tags": ["defend", "combine"], "href": "2026-10-03_vs-pcu/players/evie/05_C_47_evie-wins-into-lillian-lillian-reverses-to-morgan-to-mo.mp4"}, {"cid": "C_49", "t": "1:11:33", "label": "Good win, drives forward; TEACH Morgan too close to her when she wins it", "tags": ["teach", "defend", "takeon"], "href": "2026-10-03_vs-pcu/players/evie/06_C_49_good-win-drives-forward-teach-morgan-too-close-to-her-when-s.mp4"}, {"cid": "C_51", "t": "1:12:57", "label": "Better decision: reverses ball instead of driving to corner", "tags": ["teach", "combine"], "href": "2026-10-03_vs-pcu/players/evie/07_C_51_better-decision-reverses-ball-instead-of-driving-to-corner.mp4"}, {"cid": "C_52", "t": "1:13:49", "label": "Good drive forward out of left back", "tags": ["takeon"], "href": "2026-10-03_vs-pcu/players/evie/08_C_52_good-drive-forward-out-of-left-back.mp4"}, {"cid": "C_62", "t": "1:27:58", "label": "TEACH Great job to end line, pick head up and find teammate", "tags": ["teach", "combine"], "href": "2026-10-03_vs-pcu/players/evie/09_C_62_teach-great-job-to-end-line-pick-head-up-and-find-teammate.mp4"}, {"cid": "C_63", "t": "1:28:23", "label": "Much better: reverses ball back; good diamond overall", "tags": ["combine"], "href": "2026-10-03_vs-pcu/players/evie/10_C_63_much-better-reverses-ball-back-good-diamond-overall.mp4"}, {"cid": "C_67", "t": "1:30:06", "label": "Morgan perfect ground ball through; TEACH Evie shoots near post not far post", "tags": ["teach", "chance"], "href": "2026-10-03_vs-pcu/players/evie/11_C_67_morgan-perfect-ground-ball-through-teach-evie-shoots-near-po.mp4"}, {"cid": "C_68", "t": "1:31:56", "label": "GOAL Ball spills to Lainey, strong touch, into Evie, far post finish (corrects near-post miss at 1:30:16). Credit Lainey not Morgan", "tags": ["goal", "chance", "defend"], "href": "2026-10-03_vs-pcu/players/evie/12_C_68_goal-ball-spills-to-lainey-strong-touch-into-evie-far-post-f.mp4"}]}, {"date": "2026-10-04", "opp": "Fsc", "clips": [{"cid": "C_12", "t": "1:07:18", "label": "TEACH Evie needs to lay the ball off to Joelle", "tags": ["teach"], "href": "2026-10-04_vs-fsc/players/evie/01_C_12_teach-evie-needs-to-lay-the-ball-off-to-joelle.mp4"}]}, {"date": "2026-10-17", "opp": "Lincoln Fc", "clips": [{"cid": "C_07", "t": "5:27", "label": "Evie great drive forward", "tags": ["takeon"], "href": "2026-10-17_vs-lincoln-fc/players/evie/01_C_07_evie-great-drive-forward.mp4"}, {"cid": "C_22", "t": "21:28", "label": "TEACH: Evie promising position, does not pick head up to find far-post pass", "tags": ["teach", "combine"], "href": "2026-10-17_vs-lincoln-fc/players/evie/02_C_22_teach-evie-promising-position-does-not-pick-head-up-to-find.mp4"}, {"cid": "C_35", "t": "45:55", "label": "Evie good loose ball win", "tags": ["defend"], "href": "2026-10-17_vs-lincoln-fc/players/evie/03_C_35_evie-good-loose-ball-win.mp4"}, {"cid": "C_42", "t": "58:42", "label": "TEACH: Lainey needs to square it to the center for Evie", "tags": ["teach"], "href": "2026-10-17_vs-lincoln-fc/players/evie/06_C_42_teach-lainey-needs-to-square-it-to-the-center-for-evie.mp4"}, {"cid": "C_45", "t": "1:00:07", "label": "TEACH: Evie good breakaway, shoots middle of goal; needs bigger first touch out of her feet", "tags": ["teach", "chance", "calm"], "href": "2026-10-17_vs-lincoln-fc/players/evie/07_C_45_teach-evie-good-breakaway-shoots-middle-of-goal-needs-bigger.mp4"}, {"cid": "C_59", "t": "1:15:29", "label": "Evie great strength and tackling", "tags": ["defend"], "href": "2026-10-17_vs-lincoln-fc/players/evie/08_C_59_evie-great-strength-and-tackling.mp4"}, {"cid": "C_63", "t": "54:13", "label": "Evie great backheel", "tags": [], "href": "2026-10-17_vs-lincoln-fc/players/evie/04_C_63_evie-great-backheel.mp4"}, {"cid": "C_65", "t": "54:54", "label": "Evie goal disallowed for offside", "tags": ["chance"], "href": "2026-10-17_vs-lincoln-fc/players/evie/05_C_65_evie-goal-disallowed-for-offside.mp4"}]}, {"date": "2026-11-01", "opp": "Lcysa", "clips": [{"cid": "C_02", "t": "1:24", "label": "Nice trap out of the air", "tags": ["calm"], "href": "2026-11-01_vs-lcysa/players/evie/01_C_02_nice-trap-out-of-the-air.mp4"}, {"cid": "C_10", "t": "5:13", "label": "Good anticipation, gets into attacking spaces", "tags": ["defend"], "href": "2026-11-01_vs-lcysa/players/evie/02_C_10_good-anticipation-gets-into-attacking-spaces.mp4"}, {"cid": "C_21", "t": "9:11", "label": "Evie good forward pass into space behind Laney", "tags": ["combine"], "href": "2026-11-01_vs-lcysa/players/evie/03_C_21_evie-good-forward-pass-into-space-behind-laney.mp4"}, {"cid": "C_69", "t": "1:04:40", "label": "Sequence: Mo clever pass; Evie wins it into striker; Joelle switch to Catherine; Catherine drifts to corner, stay central", "tags": ["defend", "combine"], "href": "2026-11-01_vs-lcysa/players/evie/04_C_69_sequence-mo-clever-pass-evie-wins-it-into-striker-joelle-swi.mp4"}]}]};
+const BASE='https://www.dropbox.com/scl/fo/FOLDER_ID/HASH?rlkey=RLKEY&preview=';
+const TN=Object.fromEntries(D.tags);
+const order=["goal", "teach", "chance", "defend", "calm", "takeon", "combine"];
+let sel=null;
+const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],DOW=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+function fmt(d){const [y,m,dd]=d.split('-').map(Number);const x=new Date(y,m-1,dd);return DOW[x.getDay()]+', '+MON[m-1]+' '+dd;}
+function el(tag,cls,text){const e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e;}
+const all=D.games.flatMap(g=>g.clips);
+const goals=all.filter(c=>c.tags.includes('goal')).length;
+document.getElementById('sub').innerHTML='<b>'+all.length+' clips</b> from '+D.games.length+' games'+(goals?', including '+goals+' goals':'');
+function renderFilters(){
+  const box=document.getElementById('filters');box.textContent='';
+  const a=el('button','f'+(sel?'':' on'),'All');a.type='button';a.id='f-all';a.append(el('small',null,String(all.length)));
+  a.onclick=()=>{sel=null;render();};box.append(a);
+  order.filter(k=>TN[k]).forEach(k=>{
+    const n=all.filter(c=>c.tags.includes(k)).length;if(!n)return;
+    const b=el('button','f t-'+k+(sel===k?' on':''),TN[k]);b.type='button';b.dataset.t=k;b.id='f-'+k;
+    b.append(el('small',null,String(n)));b.setAttribute('aria-pressed',sel===k);
+    b.onclick=()=>{sel=sel===k?null:k;render();};box.append(b);
+  });
+}
+function renderGames(){
+  const root=document.getElementById('games');root.textContent='';
+  let shown=0;
+  D.games.forEach(g=>{
+    const cl=g.clips.filter(c=>!sel||c.tags.includes(sel));if(!cl.length)return;shown+=cl.length;
+    const sec=el('section','game');
+    const h=el('h2',null,'vs '+g.opp);h.append(el('span',null,fmt(g.date)+' · '+cl.length+(cl.length===1?' clip':' clips')));
+    sec.append(h);
+    const ul=el('ul');
+    cl.forEach(c=>{
+      const li=el('li');const n=el('div','note');
+      n.append(el('p','txt',c.label));
+      const m=el('div','meta');
+      if(c.t)m.append(el('span','clock','Game time '+c.t));
+      order.filter(k=>c.tags.includes(k)).forEach(k=>m.append(el('span','tag t-'+k,TN[k])));
+      n.append(m);
+      const a=el('a','watch','Watch');a.href=BASE+encodeURIComponent(c.href)+'&dl=0';a.target='_blank';a.rel='noopener';
+      a.setAttribute('aria-label','Watch clip: '+c.label);
+      li.append(n,a);ul.append(li);
+    });
+    sec.append(ul);root.append(sec);
+  });
+  if(!shown)root.append(el('p','empty','No clips with this tag.'));
+}
+function render(){renderFilters();renderGames();}
+render();
+</script>
+</body>
+</html>
